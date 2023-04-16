@@ -3,15 +3,17 @@ variable "name" {
 }
 
 variable "edge_advertised_host" {
-    description = "DNS name advertised to edge clients that they use to reach this router's edge listener"
+    description = "optional DNS name advertised to edge clients that they use to reach this router's edge listener"
+    default = ""
 }
 
 variable "transport_advertised_host" {
-    description = "DNS name advertised to other routers that they use to reach this reouter's transport link listener"
+    description = "optional DNS name advertised to other routers that they use to reach this router's transport link listener"
+    default = ""
 }
 
 variable "ctrl_endpoint" {
-    description = "the host:port pair this router should use to reach the controller's router ctrl plane binding"
+    description = "the host:port pair this router should use to contact the controller"
 }
 
 variable "namespace" {
