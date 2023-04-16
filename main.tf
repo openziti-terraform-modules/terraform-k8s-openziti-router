@@ -40,7 +40,7 @@ resource "helm_release" "ziti_router" {
                 type = "ClusterIP"
             }
             ingress = {
-                enabled = true
+                enabled = var.edge_advertised_host != "" ? true : false
                 ingressClassName = "nginx"
                 annotations = var.ingress_annotations
             }
@@ -50,7 +50,7 @@ resource "helm_release" "ziti_router" {
                 advertisedHost = var.transport_advertised_host
                 advertisedPort = 443
                 service = {
-                    enabled = true
+                    enabled = var.transport_advertised_host != "" ? true : false
                     type = "ClusterIP"
                 }
                 ingress = {
