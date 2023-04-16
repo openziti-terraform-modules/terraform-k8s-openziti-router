@@ -19,6 +19,10 @@ resource "restapi_object" "ziti_router" {
     ))
 }
 
+locals {
+    edge_advertised_host = var.edge_advertised_host != "" ? var.edge_advertised_host : "${var.name}.${var.namespace}.svc"
+}
+
 resource "helm_release" "ziti_router" {
     depends_on = [restapi_object.ziti_router]
     name       = var.name
@@ -33,11 +37,11 @@ resource "helm_release" "ziti_router" {
             tag = var.image_tag
         }
         edge = {
-            enabled = var.edge_advertised_host != "" ? true : false
-            advertisedHost = var.edge_advertised_host
+            enabled = true
+            advertisedHost = local.edge_advertised_host
             advertisedPort = 443
             service = {
-                enabled = var.edge_advertised_host != "" ? true : false
+                enabled = true
                 type = "ClusterIP"
             }
             ingress = {
