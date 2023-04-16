@@ -33,6 +33,7 @@ resource "helm_release" "ziti_router" {
             tag = var.image_tag
         }
         edge = {
+            enabled = var.edge_advertised_host != "" ? true : false
             advertisedHost = var.edge_advertised_host
             advertisedPort = 443
             service = {
