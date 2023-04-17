@@ -35,6 +35,7 @@ resource "helm_release" "ziti_router" {
         image = {
             repository = var.image_repo
             tag = var.image_tag
+            pullPolicy = var.image_pull_policy
         }
         edge = {
             enabled = true

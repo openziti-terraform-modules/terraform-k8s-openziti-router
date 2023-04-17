@@ -64,3 +64,8 @@ variable "image_tag" {
     description = "debug value for container image tag"
     default = ""
 }
+
+variable "image_pull_policy" {
+    description = "debug value for container image pull policy"
+    default = "IfNotPresent"
+}
