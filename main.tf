@@ -29,7 +29,7 @@ resource "helm_release" "ziti_router" {
     namespace  = var.namespace
     repository = "https://openziti.github.io/helm-charts"
     chart      = var.ziti_charts != "" ? "${var.ziti_charts}/ziti-router" : "ziti-router"
-    version    = "<0.3"
+    version    = "~>0.5"
     wait       = false  # hooks don't run if wait=true!?
     values     = [yamlencode(merge({
         image = {
